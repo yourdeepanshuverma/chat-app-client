@@ -8,15 +8,13 @@ import {
 } from '@mui/icons-material'
 import { Box, Container, Paper, Skeleton, Stack, Typography } from '@mui/material'
 import moment from 'moment'
-import React, { lazy } from 'react'
+import React from 'react'
 import { mateBlack } from '../../components/constants/color'
 import AdminLayout from '../../components/layout/AdminLayout'
+import { default as DoughnutChart, default as LineChart } from '../../components/specific/Charts'
 import { AdminSearchBar, AdminSearchBtn } from '../../components/styles/StyledComponents'
 import { useError } from '../../hooks/hook'
 import { useDashboardStatusQuery } from '../../store/api/adminApiSlice'
-
-const DoughnutChart = lazy(() => import('../../components/specific/Charts'))
-const LineChart = lazy(() => import('../../components/specific/Charts'))
 
 const Dashboard = () => {
     const { data, isLoading, isError, error } = useDashboardStatusQuery("")

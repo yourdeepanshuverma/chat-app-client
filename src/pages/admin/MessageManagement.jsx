@@ -1,13 +1,12 @@
 import { Avatar, Skeleton, Stack } from '@mui/material'
 import moment from 'moment'
-import React, { lazy, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminLayout from '../../components/layout/AdminLayout'
 import { fileformatter, transformImage } from '../../components/lib/features'
 import RenderAttachment from '../../components/shared/RenderAttachment'
+import Table from '../../components/shared/Table'
 import { useError } from '../../hooks/hook'
 import { useMessagesManagementQuery } from '../../store/api/adminApiSlice'
-
-const Table = lazy(() => import('../../components/shared/Table'))
 
 const columns = [
     {

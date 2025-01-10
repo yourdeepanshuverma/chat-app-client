@@ -1,12 +1,11 @@
 import { Avatar, Skeleton, Stack } from '@mui/material'
-import React, { lazy, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminLayout from '../../components/layout/AdminLayout'
 import { transformImage } from '../../components/lib/features'
 import AvatarCard from '../../components/shared/AvatarCard'
+import Table from '../../components/shared/Table'
 import { useError } from '../../hooks/hook'
 import { useChatManagementQuery } from '../../store/api/adminApiSlice'
-
-const Table = lazy(() => import('../../components/shared/Table'))
 
 const columns = [
     {
