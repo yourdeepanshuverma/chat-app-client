@@ -5,7 +5,12 @@ import { server } from "../../components/constants/config";
 const adminApiSlice = createApi({
   reducerPath: "adminApi",
   baseQuery: fetchBaseQuery({ baseUrl: `${server}/api/v1` }),
-  tagTypes: ["dashboard-stats", "dashboard-users"],
+  tagTypes: [
+    "dashboard-stats",
+    "dashboard-users",
+    "dashboard-messages",
+    "dashboard-chats",
+  ],
   endpoints: (builder) => ({
     dashboardStatus: builder.query({
       query: () => ({
