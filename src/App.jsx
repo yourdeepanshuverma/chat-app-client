@@ -26,7 +26,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get(`${server}/users/me`, { withCredentials: true })
+    axios.get(`${server}/api/v1/users/me`, { withCredentials: true })
       .then((data) =>
         dispatch(userExists(data.data))
       )

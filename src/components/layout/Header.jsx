@@ -39,7 +39,7 @@ const Header = () => {
     const navigateToGroup = () => navigate("/groups")
     const handlelogout = async () => {
         try {
-            const data = await axios.get(`${server}/users/logout`, { withCredentials: true })
+            const data = await axios.get(`${server}/api/v1/users/logout`, { withCredentials: true })
             toast.success(data?.data?.message)
             dispatch(logout())
             navigate("/login")

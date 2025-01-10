@@ -3,7 +3,7 @@ import { server } from "../../components/constants/config.js";
 
 const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: `${server}` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${server}/api/v1` }),
   tagTypes: ["Chat", "User", "Message"],
   endpoints: (builder) => ({
     myChats: builder.query({

@@ -12,7 +12,7 @@ const loginAdmin = createAsyncThunk("/admin/login", async (secretKey) => {
       },
     };
     const { data } = await axios.post(
-      `${server}/admin/verify`,
+      `${server}/api/v1/admin/verify`,
       { secretKey },
       config
     );
@@ -28,7 +28,7 @@ const getAdmin = createAsyncThunk("/admin/getAdmin", async () => {
     const config = {
       withCredentials: true,
     };
-    const { data } = await axios.get(`${server}/admin/`, config);
+    const { data } = await axios.get(`${server}/api/v1/admin/`, config);
     return data.admin;
   } catch (error) {
     throw error.response.data.message;
@@ -41,7 +41,7 @@ const logoutAdmin = createAsyncThunk("/admin/logoutAdmin", async () => {
     const config = {
       withCredentials: true,
     };
-    const { data } = await axios.get(`${server}/admin/logout`, config);
+    const { data } = await axios.get(`${server}/api/v1/admin/logout`, config);
     return data.message;
   } catch (error) {
     throw error.response.data.message;

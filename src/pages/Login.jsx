@@ -27,7 +27,7 @@ export default function Login() {
         }
         try {
             setisLoading(true)
-            const { data: userData } = await axios.post(`${server}/users/login`, data, config)
+            const { data: userData } = await axios.post(`${server}/api/v1/users/login`, data, config)
             dispatch(userExists(userData));
             toast.success(`Welcome back, ${userData.name}`);
             navigate("/");

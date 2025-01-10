@@ -61,7 +61,7 @@ useEffect(() => {
 
         try {
             setIsLoading(true)
-            const { data: userData } = await axios.post(`${server}/users/register`, form, config)
+            const { data: userData } = await axios.post(`${server}/api/v1/users/register`, form, config)
             toast.success("User registered successfully")
             dispatch(userExists(userData))
             navigate("/")
