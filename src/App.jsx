@@ -31,42 +31,39 @@ function App() {
         dispatch(userExists(data.data))
       )
       .catch((err) => dispatch(userNotExists()));
-  }, [])
+  }, [dispatch])
 
 
   const router = createBrowserRouter([
+
     {
       path: "/",
       element: (
         <SocketProvider>
-          <Protect authentication>
-            <Home />
-          </Protect>
-        </SocketProvider>
+          <Protect />
+        </SocketProvider >
       ),
-      exact: true
-    },
-    {
-      path: "/chat/:chatId",
-      element: (
-        <SocketProvider>
-          <Protect authentication>
-            <Chat />
-          </Protect>
-        </SocketProvider>
-      ),
-      exact: true
-    },
-    {
-      path: "/groups",
-      element: (
-        <SocketProvider>
-          <Protect authentication>
-            <Groups />
-          </Protect>
-        </SocketProvider>
-      ),
-      exact: true
+      children: [{
+        path: "/",
+        element: (
+          <Home />
+        ),
+        exact: true
+      },
+      {
+        path: "/chat/:chatId",
+        element: (
+          <Chat />
+        ),
+        exact: true
+      },
+      {
+        path: "/groups",
+        element: (
+          <Groups />
+        ),
+        exact: true
+      }]
     }
     ,
     {

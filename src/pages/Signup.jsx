@@ -31,17 +31,17 @@ export default function Signup() {
 
     const avatar = watch("avatar")
 
-useEffect(() => {
-    if (avatar?.length) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            setPreview(reader.result);
-        };
-        reader.readAsDataURL(avatar[0]);
-    } else {
-        setPreview(null);
-    }
-}, [avatar])
+    useEffect(() => {
+        if (avatar?.length) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreview(reader.result);
+            };
+            reader.readAsDataURL(avatar[0]);
+        } else {
+            setPreview(null);
+        }
+    }, [avatar])
 
     const handleSignup = async (data) => {
         const form = new FormData();
@@ -171,7 +171,9 @@ useEffect(() => {
                                 }}
                                 component="label">
                                 < CameraAltIcon />
-                                <VisuallyHiddenInput accept={"image/png, image/jpg, image/jpeg,"} multiple={false} type="file" {...register("avatar")} />
+                                <VisuallyHiddenInput accept={"image/png, image/jpg, image/jpeg,"} multiple={false} type="file" {...register("avatar", {
+                                    required: "Avatar is required",
+                                })} />
 
                             </IconButton>
                         </Stack>
