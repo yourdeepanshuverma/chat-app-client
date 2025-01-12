@@ -1,13 +1,14 @@
 import { Drawer, Grid, Skeleton } from '@mui/material'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useError, useSocketEvents } from '../../hooks/hook.jsx'
 import { getSocket } from '../../socket.jsx'
 import { useAvailableFriendsQuery, useMyChatsQuery } from '../../store/api/apiSlice.js'
 import { increaseNotificationCount, setNewNotificationAlert } from '../../store/reducers/chatSlice.js'
 import { setDeleteMenu, setMobile, setSelectedDeleteChat } from '../../store/reducers/miscSlice.js'
-import { ALERT, NEW_MESSAGE_ALERT, NEW_REQUEST, ONLINE_USERS } from '../constants/event.js'
+import { NEW_MESSAGE_ALERT, NEW_REQUEST, ONLINE_USERS, REFETCH_CHATS } from '../constants/event.js'
 import DeleteChatMenu from '../dialogs/DeleteChatMenu.jsx'
 import { saveOrGetLocalStorage } from '../lib/features.js'
 import Title from '../shared/Title.jsx'
@@ -21,6 +22,7 @@ const AppLayout = () => (WrappedComponent) => {
         const socket = getSocket()
         const dispatch = useDispatch()
         const deleteMenuRef = useRef(null)
+        const navigate = useNavigate()
 
         const [onlineUsers, setOnlineUsers] = useState([])
 
@@ -51,10 +53,10 @@ const AppLayout = () => (WrappedComponent) => {
             dispatch(increaseNotificationCount())
         }, [dispatch])
 
-        const alertListner = useCallback((data) => {
-            if (chatId != data.chatId) return
-            refetch()
-        }, [refetch])
+        const refetchListener = useCallback(() => {
+            refetch();
+            navigate("/");
+        }, [refetch, navigate]);
 
         const onlineUserListner = useCallback((data) => {
             setOnlineUsers(data)
@@ -63,7 +65,7 @@ const AppLayout = () => (WrappedComponent) => {
         const eventHandler = {
             [NEW_MESSAGE_ALERT]: newMessageAlertHandler,
             [NEW_REQUEST]: newRequestHandler,
-            [ALERT]: alertListner,
+            [REFETCH_CHATS]: refetchListener,
             [ONLINE_USERS]: onlineUserListner
         };
 

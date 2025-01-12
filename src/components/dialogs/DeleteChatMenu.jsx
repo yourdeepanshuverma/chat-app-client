@@ -21,11 +21,13 @@ const DeleteChatMenu = ({ dispatch, deleteAnchorMenu }) => {
 
     const deleteChatHandler = () => {
         deleteChat("Deleting Chat...", selectedDeleteChat.chatId)
+        handleClose()
         navigate("/")
     };
 
     const leaveGroupHandler = () => {
         leaveGroup("Leaving Group...", selectedDeleteChat.chatId)
+        handleClose()
         navigate("/")
     };
 
